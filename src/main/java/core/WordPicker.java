@@ -20,22 +20,20 @@ public class WordPicker {
                 word = wordListFile.readLine();
             }
         } catch (IOException e){
-            System.out.println("Error reading file");
-            e.printStackTrace();
+            System.err.println("Error reading file: " + filePath);
         } finally {
             wordListFile.close();
         }
     }
 
+    public static String getAnswer(){
+        return answer;
+    }
 
-    public void generateWord(){
+    protected void generateWord(){
         Random rnd = new Random();
         answer = wordList.get(rnd.nextInt(wordList.size()));
         System.out.println("current answer is: " + answer);
     }
 
-
-    public static String getAnswer(){
-        return answer;
-    }
 }

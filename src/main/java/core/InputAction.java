@@ -10,7 +10,8 @@ public class InputAction {
         this.window = window;
         this.gameScreen = gameScreen;
     }
-    public void typeLetter(char ch){
+
+    protected void typeLetter(char ch){
         // if there are empty boxes in current row
         if (PositionCounter.getColumn() < LetterGrid.COLUMN){
             // get the letter box at current position
@@ -23,14 +24,13 @@ public class InputAction {
     }
 
 
-    public void pressEnter() {
+    protected void pressEnter() {
         try {
             InputValidator.InputType inputStatus =
                     InputValidator.checkInput(gameScreen.getCurrentRow(),
                             WordPicker.getAnswer());
 
-            if (inputStatus == InputValidator.InputType.CORRECT_WORD) {
-                // win code
+            if (inputStatus == InputValidator.InputType.CORRECT_WORD) { // win
                 window.winScreen.setScore();
                 window.changeScreen(Screen.ScreenType.WIN);
             } else if (inputStatus == InputValidator.InputType.WRONG_WORD &&
@@ -52,7 +52,7 @@ public class InputAction {
     }
 
 
-    public void pressBackspace (){
+    protected void pressBackspace (){
         // move back position pointer by one column
         if (PositionCounter.getColumn() > 0){
             PositionCounter.setColumn(PositionCounter.getColumn() - 1);
